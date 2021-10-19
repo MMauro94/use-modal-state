@@ -10,7 +10,7 @@ export function useModalState<T>(initial?: T, options?: ModalStateOptions): Moda
         setOpen(true)
     }, [setData, setOpen])
 
-    const closeModal = useCallback(() => {
+    const closeDialog = useCallback(() => {
         setOpen(false)
     }, [setOpen])
 
@@ -27,7 +27,7 @@ export function useModalState<T>(initial?: T, options?: ModalStateOptions): Moda
     return useMemo<ModalState<T>>(() => {
         const base: BaseModalState<T> = {
             open: openModal,
-            close: closeModal
+            close: closeDialog
         }
         if (isOpen && data !== undefined) {
             return {
@@ -39,8 +39,8 @@ export function useModalState<T>(initial?: T, options?: ModalStateOptions): Moda
             return {
                 ...base,
                 isOpen: false,
-                data: undefined
+                data: data
             }
         }
-    }, [isOpen, data, openModal, closeModal])
+    }, [isOpen, data, openModal, closeDialog])
 }
