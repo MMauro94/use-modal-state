@@ -1,0 +1,22 @@
+{
+  "name": "use-modal-state",
+  "version": "0.0.0",
+  "description": "A simple hook to simplify state management of modal dialogs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/MMauro94/use-modal-state",
+  "author": "Mauro Molin",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "release": "np"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "@types/react": "^17.0.4"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  }
+}
