@@ -1,16 +1,16 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {BaseModalState, ModalState, ModalStateOptions} from "./types";
 
-export function useDialogState<T>(initial?: T, options?: ModalStateOptions): ModalState<T> {
+export function useModalState<T>(initial?: T, options?: ModalStateOptions): ModalState<T> {
     const [data, setData] = useState<T | undefined>(initial)
     const [isOpen, setOpen] = useState(initial !== undefined)
 
-    const openDialog = useCallback((value: T) => {
+    const openModal = useCallback((value: T) => {
         setData(value)
         setOpen(true)
     }, [setData, setOpen])
 
-    const closeDialog = useCallback(() => {
+    const closeModal = useCallback(() => {
         setOpen(false)
     }, [setOpen])
 
@@ -26,8 +26,8 @@ export function useDialogState<T>(initial?: T, options?: ModalStateOptions): Mod
 
     return useMemo<ModalState<T>>(() => {
         const base: BaseModalState<T> = {
-            open: openDialog,
-            close: closeDialog
+            open: openModal,
+            close: closeModal
         }
         if (isOpen && data !== undefined) {
             return {
@@ -42,5 +42,5 @@ export function useDialogState<T>(initial?: T, options?: ModalStateOptions): Mod
                 data: undefined
             }
         }
-    }, [isOpen, data, openDialog, closeDialog])
+    }, [isOpen, data, openModal, closeModal])
 }

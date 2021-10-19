@@ -1,5 +1,5 @@
-import {useDialogState} from "./useModalState";
+import {useModalState} from "./useModalState";
 
 export * from "./types"
 
-export default useDialogState
+export default useModalState
