@@ -1,6 +1,11 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {BaseModalState, ModalState, ModalStateOptions} from "./types";
 
+/**
+ * @param initial initial value for the modal. Any value different from `undefined` will result in a open modal.
+ * @param options options. See {@link ModalStateOptions}
+ * @return a {@link ModalState}
+ */
 export function useModalState<T>(initial?: T, options?: ModalStateOptions): ModalState<T> {
     const [data, setData] = useState<T | undefined>(initial)
     const [isOpen, setOpen] = useState(initial !== undefined)
