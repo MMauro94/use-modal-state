@@ -21,57 +21,48 @@ npm install use-modal-state
 In this example we can see how this simple hook can be used in Material UI.
 ```typescript jsx
 
-type Recipe = {
-    id: number
-    title: string
-    instructions: string
-}
+type Message = {
+  title: string;
+  message: string;
+};
 
-function Recipes({recipes}: { recipes: Recipe[] }) {
-    // Declare the dialog state
-    const modal = useMuiModalState<Recipe>()
-
-    return <>
-        <MyDialog state={modal} />
-        Recipes:
-        {recipes.map(recipe => {
-            return <span key={recipe.id} onClick={() => modal.open(recipe)}>
-                {recipe.title}
-            </span>
-        })}
-    </>
-}
-
-// Dialog component: state contains the dialog state and open/close APIs
-function MyDialog({state}: { state: ModalState<Recipe> }) {
-    return <Dialog
-        open={state.isOpen}
-        onClose={state.close}
-    >
-        {state.data && <>
-            <DialogTitle>
-                {state.data.title}
-            </DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                    {state.data.instructions}
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={state.close}>Close</Button>
-            </DialogActions>
-        </>}
+function MessageDialog({ state }: { state: ModalState<Message> }) {
+  return (
+    <Dialog fullWidth maxWidth="xs" open={state.isOpen} onClose={state.close}>
+      <DialogTitle>{state.data?.title}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>{state.data?.message}</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={state.close}>OK</Button>
+      </DialogActions>
     </Dialog>
+  );
 }
 
-// Use MUI theme to automatically set transitionDuration
-function useMuiModalState<T>(initial?: T): ModalState<T> {
-    const theme = useTheme()
-    return useModalState(initial, {
-        transitionDuration: theme.transitions.duration.leavingScreen
-    })
+/**
+ * how you used the components
+ */
+export default function Demo() {
+  const messageDialog = useModalState<Message>();
+  return (
+    <>
+      <MessageDialog state={messageDialog} />
+      <Button
+        variant="contained"
+        children="OPEN DIALOG"
+        onClick={() =>
+          messageDialog.open({
+            title: "Hello 👋",
+            message: "Hello world!"
+          })
+        }
+      />
+    </>
+  );
 }
 ```
+You can find the same example in the [code sandbox](https://codesandbox.io/s/use-modal-state-no7fv?file=/src/Demo.tsx).
 
 ## API
 
