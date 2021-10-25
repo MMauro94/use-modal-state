@@ -24,7 +24,7 @@ export function useModalState<T>(initial?: T, options?: ModalStateOptions): Moda
         if (!isOpen && data !== undefined) {
             const t = setTimeout(() => {
                 setData(undefined)
-            }, options?.transitionDuration)
+            }, transitionDuration)
             return () => clearTimeout(t)
         }
     }, [isOpen, data, transitionDuration])
@@ -32,7 +32,7 @@ export function useModalState<T>(initial?: T, options?: ModalStateOptions): Moda
     return useMemo<ModalState<T>>(() => {
         const base: BaseModalState<T> = {
             open: openModal,
-            close: closeDialog
+            close: closeDialog,
         }
         if (isOpen && data !== undefined) {
             return {
