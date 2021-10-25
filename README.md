@@ -76,7 +76,7 @@ function useMuiModalState<T>(initial?: T): ModalState<T> {
 ## API
 
 * `useModalState<T>(initial?: T, options?: ModalStateOptions) : ModalState<T>`: hook that declares and returns a modal state.
-  * `initial`: initial value for the modal. Any value `!== undefined` make the dialog initially open.
+  * `initial`: initial value for the modal. Any value `!== undefined` makes the dialog initially open.
   * `options`: options dictionary
     * `transitionDuration`: Tells the hook how many milliseconds are required for the dialog to completely close. 
       This is needed so that the data is not immediately unset from the state (as opposed to the `isOpen` property) in order to avoid the dialog to
