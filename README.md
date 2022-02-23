@@ -40,9 +40,6 @@ function MessageDialog({ state }: { state: ModalState<Message> }) {
   );
 }
 
-/**
- * how you used the components
- */
 export default function Demo() {
   const messageDialog = useModalState<Message>();
   return (
